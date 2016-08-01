@@ -1,0 +1,26 @@
+(ns material-hl.menus
+  (:require [material-hl.core :as core]
+            [goog.events :as event]))
+
+(def ^:dynamic *ripple-effect* false)
+(def ^:dynamic *align-top* false)
+(def ^:dynamic *align-right* false)
+(def ^:dynamic *full-bleed* false)
+
+(defelem menu [attr kids]
+  (let [ripple (or (:ripple-effect attr) *ripple-effect*)
+        top (or (:align-top) *align-top*)
+        right (or (:align-right) *align-right*)]
+    (ul (core/assoc-class attr {:mdl-menu true
+                                :mdl-js-menu true
+                                :mdl-js-ripple-effect ripple
+                                :mdl-menu--top-right (and top right)
+                                :mdl-menu--top-left (and top (not right))
+                                :mdl-menu--bottom-right (and (not top) right)})
+      kids)))
+
+(defelem menu-item [attr kids]
+  (let [full-bleed (or (:full-bleed attr) *full-bleed*)]
+    (li (core/assoc-class attr {:mdl-menu__item true
+                                :mdl-menu__item--full-bleed-divider full-bleed})
+      kids)))

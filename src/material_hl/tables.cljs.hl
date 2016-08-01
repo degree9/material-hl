@@ -1,0 +1,22 @@
+(ns material-hl.tables
+  (:require [material-hl.core :as core]
+            [goog.dom.classlist :as gcl]))
+
+(def ^:dynamic *selectable* false)
+
+(defelem table [attr kids]
+  (let [selectable (or (:selectable attr) *selectable*)]
+    (table (core/assoc-class attr {:mdl-data-table true
+                                   :mdl-js-data-table true
+                                   :mdl-data-table--selectable selectable})
+      kids)))
+
+(defmethod do! :sorted
+  [elem _ v]
+  (when v
+    (gcl/add elem (str "mdl-data-table__header-sorted--" (name v)))))
+
+(defmethod do! :non-numeric
+  [elem _ v]
+  (when v
+    (gcl/add elem (str "mdl-data-table__cell--non-numeric" (name ascending)))))

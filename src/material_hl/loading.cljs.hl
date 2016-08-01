@@ -1,0 +1,29 @@
+(ns material-hl.loading
+  (:require [material-hl.core :as core]
+            [goog.events :as event]))
+
+(def ^:dynamic *buffer* nil)
+(def ^:dynamic *progress* nil)
+(def ^:dynamic *indeterminate* false)
+(def ^:dynamic *active-spinner* false)
+(def ^:dynamic *single-color* false)
+
+(defelem progress [attr kids]
+  (let [indeterminate (or (:indeterminate attr) *indeterminate*)]
+    (div (core/assoc-class attr {:mdl-progress true
+                                 :mdl-js-progress true
+                                 :mdl-progress--indeterminate indeterminate})
+      kids)))
+
+(defmethod do! :data-progress
+  [elem _ v]
+  (when v (event/listen elem "mdl-componentupgraded" #(.setProgress (.MaterialProgress elem) v))))
+
+(defelem spinner [attr kids]
+  (let [active (or (:active attr) *active-spinner*)
+        color  (or (:single-color attr) *single-color*)]
+    (div (core/assoc-class attr {:mdl-spinner true
+                                 :mdl-js-spinner true
+                                 :is-active active
+                                 :single-color color})
+      kids)))

@@ -1,0 +1,32 @@
+(ns material-hl.buttons
+  (:require [material-hl.core :as core]))
+
+(def ^:dynamic *ripple-effect* false)
+(def ^:dynamic *raised* false)
+(def ^:dynamic *fab* false)
+(def ^:dynamic *mini-fab* false)
+(def ^:dynamic *icon* false)
+(def ^:dynamic *colored* false)
+(def ^:dynamic *primary* false)
+(def ^:dynamic *accent* false)
+
+(defelem badge [attr kids]
+  (let [ripple (or (:ripple-effect attr) *ripple-effect*)
+        raised (or (:raised attr) *raised*)
+        fab (or (:fab attr) *fab*)
+        mini-fab (or (:mini-fab attr) *mini-fab*)
+        icon (or (:icon attr) *icon*)
+        colored (or (:colored attr) *colored*)
+        primary (or (:primary attr) *primary*)
+        accent (or (:accent attr) *accent*)]
+    (button (core/assoc-class attr {:mdl-button true
+                                    :mdl-js-button true
+                                    :mdl-js-ripple-effect ripple
+                                    :mdl-button--raised   raised
+                                    :mdl-button--fab      fab
+                                    :mdl-button--mini-fab mini-fab
+                                    :mdl-button--icon     icon
+                                    :mdl-button--colored  colored
+                                    :mdl-button--primary  primary
+                                    :mdl-button--accent   accent})
+      kids)))

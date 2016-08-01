@@ -1,0 +1,98 @@
+(ns material-hl.layout
+  (:require [material-hl.core :as core]
+            [goog.dom.classlist :as gcl]))
+
+(def ^:dynamic *fixed-drawer* false)
+(def ^:dynamic *fixed-header* false)
+(def ^:dynamic *fixed-tabs* false)
+(def ^:dynamic *waterfall-header* false)
+(def ^:dynamic *hide-top* false)
+(def ^:dynamic *transparent-header* false)
+(def ^:dynamic *seamed-header* false)
+(def ^:dynamic *drawer-button* false)
+(def ^:dynamic *desktop-drawer-button* false)
+(def ^:dynamic *active-tab* nil)
+
+(defelem layout [attr kids]
+  (let [drawer (or (:fixed-drawer attr)  *fixed-drawer*)
+        header (or (:fixed-header attr)  *fixed-header*)
+        tabs   (or (:fixed-tabs attr)    *fixed-tabs*)
+        button (or (:drawer-button attr) *drawer-button*)
+        desktop-button (or (:desktop-drawer-button attr) *desktop-drawer-button*)]
+    (div (core/assoc-class attr {:mdl-layout true
+                                 :mdl-js-layout true
+                                 :mdl-layout--fixed-drawer drawer
+                                 :mdl-layout--fixed-header header
+                                 :mdl-layout--fixed-tabs tabs
+                                 :mdl-layout--no-drawer-button (not button)
+                                 :mdl-layout--no-desktop-drawer-button (not desktop-button)})
+      kids)))
+
+(defelem layout-drawer [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-layout__drawer true})
+      kids)))
+
+(defelem layout-header [attr kids]
+  (let [waterfall   (or (:waterfall attr)   *waterfall-header*)
+        hide-top    (or (:hide-top attr)    *hide-top*)
+        scroll      (or (:scroll attr)      (and (not *fixed-header*)
+                                                 (not *waterfall-header*)))
+        transparent (or (:transparent attr) *transparent-header*)
+        seamed      (or (:seamed attr)      *seamed-header*)]
+    (header :class (cell= (cond-> [:mdl-layout__header]
+                            scroll      (conj :mdl-layout__header--scroll)
+                            waterfall   (conj :mdl-layout__header--waterfall)
+                            hide-top    (conj :mdl-layout__header--waterfall-hide-top)
+                            transparent (conj :mdl-layout__header--transparent)
+                            seamed      (conj :mdl-layout__header--seamed)))
+      attr kids)))
+
+(defelem header-row [attr kids]
+  (let []
+    (div :class [:mdl-layout__header-row]
+      attr kids)))
+
+(defelem tab-bar [attr kids]
+  (let []
+    (div :class [:mdl-layout__tab-bar]
+      attr kids)))
+
+(defelem tab [attr kids]
+  (let [active (or (:active attr) (= (:id attr) *active-tab*))]
+    (div :class (cell= (cond-> [:mdl-layout__tab]
+                         active (conj :is-active)))
+      attr kids)))
+
+(defelem tab-panel [attr kids]
+  (let []
+    (section :class [:mdl-layout__tab-panel]
+      attr kids)))
+
+(defelem layout-content [attr kids]
+  (let []
+    (main :class [:mdl-layout__content]
+      attr kids)))
+
+(defelem layout-icon [attr kids]
+  (div :class "mdl-layout-icon"
+    attr kids))
+
+(defelem layout-title [attr kids]
+  (span
+    (assoc attr :class "mdl-layout__title")
+    kids))
+
+(defelem layout-spacer [attr kids]
+  (div :class "mdl-layout-spacer"
+    attr kids))
+
+(defmethod do! :screen
+  [elem _ v]
+  (case v
+    :large (comp (gcl/remove elem "mdl-layout--small-screen-only")
+                 (gcl/add elem "mdl-layout--large-screen-only"))
+    :small (comp (gcl/remove elem "mdl-layout--large-screen-only")
+                 (gcl/add elem "mdl-layout--small-screen-only"))
+    :else  (comp (gcl/remove elem "mdl-layout--large-screen-only")
+                 (gcl/remove elem "mdl-layout--small-screen-only"))))
