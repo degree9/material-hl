@@ -37,8 +37,8 @@
   []
   (comp
     (hoplon)
-    (sift :to-asset #{#"[.]*.hl"} :invert true)
-    (target :dir #{"docs"})
+    (sift :to-asset #{#"[.]*.hl$"} :invert true)
+    (target :dir #{"target"})
     (apidoc)))
 
 (deftask deploy
