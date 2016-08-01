@@ -1,0 +1,66 @@
+(ns material-hl.footer
+  (:require [material-hl.core :as core]))
+
+(defelem mega-footer [attr kids]
+  (let []
+    (footer (core/assoc-class attr {:mdl-mega-footer true}))))
+
+(defelem mega-footer-top [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__top-section true}))))
+
+(defelem mega-footer-middle [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__middle-section true}))))
+
+(defelem mega-footer-bottom [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__bottom-section true}))))
+
+(defelem mega-footer-left [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__left-section true}))))
+
+(defelem mega-footer-right [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__right-section true}))))
+
+(defelem mega-footer-dropdown [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__drop-down-section true}))))
+
+(defelem mega-footer-social-button [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mega-footer__social-btn true}))))
+
+(defelem mega-footer-heading [attr kids]
+  (let []
+    (h1 (core/assoc-class attr {:mdl-mega-footer__heading true}))))
+
+(defelem mega-footer-link-list [attr kids]
+  (let []
+    (ul (core/assoc-class attr {:mdl-mega-footer__link-list true}))))
+
+(defelem mini-footer [attr kids]
+  (let []
+    (footer (core/assoc-class attr {:mdl-mini-footer true}))))
+
+(defelem mini-footer-left [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mini-footer__left-section true}))))
+
+(defelem mini-footer-right [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mini-footer__right-section true}))))
+
+(defelem mini-footer-link-list [attr kids]
+  (let []
+    (ul (core/assoc-class attr {:mdl-mini-footer__link-list true}))))
+
+(defelem mini-footer-social-button [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-mini-footer__social-btn true}))))
+
+(defelem footer-logo [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-logo true}))))

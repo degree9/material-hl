@@ -1,0 +1,23 @@
+(ns material-hl.tooltip
+  (:require [material-hl.core :as core]))
+
+(def ^:dynamic *large*        false)
+(def ^:dynamic *align-left*   false)
+(def ^:dynamic *align-right*  false)
+(def ^:dynamic *align-top*    false)
+(def ^:dynamic *align-bottom* false)
+
+(defelem tooltip [attr kids]
+  (let [large  (or (:large attr) *large*)
+        left   (or (:align-left attr) *align-left*)
+        right  (or (:align-right attr) *align-right*)
+        top    (or (:align-top attr) *align-top*)
+        bottom (or (:align-bottom attr) *align-bottom*)]
+    (span (core/assoc-class attr
+            {:mdl-tooltip true
+             :mdl-tooltip--large large
+             :mdl-tooltip--left left
+             :mdl-tooltip--right right
+             :mdl-tooltip--top top
+             :mdl-tooltip--bottom bottom})
+      kids)))

@@ -1,0 +1,25 @@
+(ns material-hl.tabs
+  (:require [material-hl.core :as core]))
+
+(def ^:dynamic *ripple-effect* false)
+(def ^:dynamic *active-tab* nil)
+
+(defelem tabs [attr kids]
+  (let [ripple (or (:ripple-effect attr) *ripple-effect*)]
+    (div (core/assoc-class attr {:mdl-tabs true
+                                 :mdl-js-tabs true
+                                 :mdl-js-ripple-effect ripple})
+      kids)))
+
+(defelem tab-bar [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-tabs__tab-bar true}) kids)))
+
+(defelem tab [attr kids]
+  (let [active (or (:active attr) (= (:id attr) *active-tab*))]
+    (a (core/assoc-class attr {:mdl-tabs__tab true
+                               :is-active active}) kids)))
+
+(defelem tab-panel [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-tabs__panel true}) kids)))
