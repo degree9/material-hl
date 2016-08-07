@@ -12,8 +12,9 @@
       kids)))
 
 (defelem card-title [attr kids]
-  (let []
-    (div (core/assoc-class attr {:mdl-card__title true})
+  (let [border (or (:border attr) *border*)]
+    (div (core/assoc-class attr {:mdl-card__title true
+                                 :mdl-card--border border})
       kids)))
 
 (defelem card-title-text [attr kids]
@@ -27,16 +28,19 @@
       kids)))
 
 (defelem card-media [attr kids]
-  (let []
-    (div (core/assoc-class attr {:mdl-card__media true})
+  (let [border (or (:border attr) *border*)]
+    (div (core/assoc-class attr {:mdl-card__media true
+                                 :mdl-card--border border})
       kids)))
 
 (defelem card-supporting-text [attr kids]
-  (let []
-    (div (core/assoc-class attr {:mdl-card__supporting-text true})
+  (let [border (or (:border attr) *border*)]
+    (div (core/assoc-class attr {:mdl-card__supporting-text true
+                                 :mdl-card--border border})
       kids)))
 
 (defelem card-actions [attr kids]
-  (let []
-    (div (core/assoc-class attr {:mdl-card__actions true})
+  (let [border (or (:border attr) *border*)]
+    (div (core/assoc-class attr {:mdl-card__actions true
+                                 :mdl-card--border border})
       kids)))

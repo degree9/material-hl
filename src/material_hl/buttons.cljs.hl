@@ -1,4 +1,5 @@
 (ns material-hl.buttons
+  (:refer-hoplon :exclude [button])
   (:require [material-hl.core :as core]))
 
 (def ^:dynamic *ripple-effect* false)
@@ -10,7 +11,7 @@
 (def ^:dynamic *primary* false)
 (def ^:dynamic *accent* false)
 
-(defelem badge [attr kids]
+(defelem button [attr kids]
   (let [ripple (or (:ripple-effect attr) *ripple-effect*)
         raised (or (:raised attr) *raised*)
         fab (or (:fab attr) *fab*)
@@ -19,7 +20,7 @@
         colored (or (:colored attr) *colored*)
         primary (or (:primary attr) *primary*)
         accent (or (:accent attr) *accent*)]
-    (button (core/assoc-class attr {:mdl-button true
+    (hoplon.core/button (core/assoc-class attr {:mdl-button true
                                     :mdl-js-button true
                                     :mdl-js-ripple-effect ripple
                                     :mdl-button--raised   raised
