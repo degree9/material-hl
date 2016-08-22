@@ -50,7 +50,7 @@
     (build-jar)
     (push-release)))
 
-(deftask dev
+(deftask develop
   "Build project for development."
   []
   (comp

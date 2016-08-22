@@ -1,0 +1,31 @@
+(ns material-hl.stepper
+  (:refer-clojure :exclude [stepper])
+  (:require [cljsjs.mdl-stepper]
+            [material-hl.core :as core]))
+
+(defelem stepper [attr kids]
+  (ul (core/assoc-class attr {:mdl-stepper true}) kids))
+
+(defelem step [attr kids]
+  (li (core/assoc-class attr {:mdl-step true}) kids))
+
+(defelem step-label [attr kids]
+  (span (core/assoc-class attr {:mdl-step__label true}) kids))
+
+(defelem step-title [attr kids]
+  (span (core/assoc-class attr {:mdl-step__title true}) kids))
+
+(defelem step-title-text [attr kids]
+  (span (core/assoc-class attr {:mdl-step__title-text true}) kids))
+
+(defelem step-title-message [attr kids]
+  (span (core/assoc-class attr {:mdl-step__title-message true}) kids))
+
+(defelem step-content [attr kids]
+  (div (core/assoc-class attr {:mdl-step__content true}) kids))
+
+(defelem step-actions [attr kids]
+  (div (core/assoc-class attr {:mdl-step__actions true}) kids))
+
+(defn back [id]
+  (-> js/document (.querySelector id) (aget "MaterialStepper") .back))

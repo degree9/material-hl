@@ -6,5 +6,5 @@
     attr kids))
 
 (defelem nav-link [attr kids]
-  (div :class [:mdl-navigation__link]
+  (a :class [:mdl-navigation__link]
     attr kids))
