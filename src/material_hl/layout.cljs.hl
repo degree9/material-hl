@@ -33,6 +33,11 @@
     (div (core/assoc-class attr {:mdl-layout__drawer true})
       kids)))
 
+(defelem layout-drawer-button [attr kids]
+  (let []
+    (div (core/assoc-class attr {:mdl-layout__drawer-button true})
+      kids)))
+
 (defelem layout-header [attr kids]
   (let [waterfall   (or (:waterfall attr)   *waterfall-header*)
         hide-top    (or (:hide-top attr)    *hide-top*)
@@ -53,6 +58,11 @@
     (div :class [:mdl-layout__header-row]
       attr kids)))
 
+(defelem tab-bar-container [attr kids]
+  (let []
+    (div :class [:mdl-layout__tab-bar-container]
+      attr kids)))
+
 (defelem tab-bar [attr kids]
   (let []
     (div :class [:mdl-layout__tab-bar]
@@ -60,7 +70,7 @@
 
 (defelem tab [attr kids]
   (let [active (or (:active attr) (= (:id attr) *active-tab*))]
-    (div :class (cell= (cond-> [:mdl-layout__tab]
+    (a :class (cell= (cond-> [:mdl-layout__tab]
                          active (conj :is-active)))
       attr kids)))
 

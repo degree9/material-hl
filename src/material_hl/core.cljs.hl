@@ -18,3 +18,11 @@
 (defn assoc-class [attr & [pre post]]
   (let [class (:class attr)]
     (assoc attr :class (cell= (merge pre (normalize-class class) post)))))
+
+(defmethod hoplon.core/do! :upgrade
+  [elem _ v]
+  (when v
+    (.. js/componentHandler (upgradeElement elem))))
+
+(defn auto-upgrade! []
+  (.addEventListener js/window "hashchange" #(.. js/componentHandler upgradeAllRegistered)))
