@@ -1,0 +1,39 @@
+(ns material-hl.toolbar
+  (:refer-hoplon :exclude [section])
+  (:require [material-hl.core :as core]))
+
+(def ^:dynamic *fixed* nil)
+(def ^:dynamic *start* nil)
+(def ^:dynamic *end*   nil)
+
+(defelem toolbar [attr kids]
+  (let [fixed (:fixed attr *fixed*)]
+    (header
+      (core/assoc-class attr
+        {:mdc-toolbar        true
+         :mdc-toolbar--fixed fixed})
+      kids)))
+
+(defelem content [attr kids]
+  (let [fixed (:fixed attr *fixed*)]
+    (main
+      (core/assoc-class attr
+        {:mdc-toolbar-fixed-adjust fixed})
+      kids)))
+
+(defelem section [attr kids]
+  (let [start (:start attr *start*)
+        end   (:end   attr *end*)]
+    (hoplon.core/section
+      (core/assoc-class attr
+        {:mdc-toolbar__section              true
+         :mdc-toolbar__section--align-start start
+         :mdc-toolbar__section--align-end   end})
+      kids)))
+
+(defelem title [attr kids]
+  (let []
+    (span
+      (core/assoc-class attr
+        {:mdc-title true})
+      kids)))

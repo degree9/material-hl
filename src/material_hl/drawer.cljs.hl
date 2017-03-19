@@ -1,0 +1,65 @@
+(ns material-hl.drawer
+  (:require [material-hl.core :as core]))
+
+(defelem permanent [attr kids]
+  (let []
+    (nav
+      (core/assoc-class attr
+        {:mdc-permanent-drawer true})
+      kids)))
+
+(defelem permanent-toolbar-spacer [attr kids]
+  (let []
+    (div
+      (core/assoc-class attr
+        {:mdc-permanent-drawer__toolbar-spacer true})
+      kids)))
+
+(defelem permanent-content [attr kids]
+  (let []
+    (div
+      (core/assoc-class attr
+        {:mdc-permanent-drawer__content true})
+      kids)))
+
+(defelem temporary [attr kids]
+  (let []
+    (aside
+      (core/assoc-class attr
+        {:mdc-temporary-drawer true})
+      kids)))
+
+(defelem temporary-drawer [attr kids]
+  (let []
+    (nav
+      (core/assoc-class attr
+        {:mdc-temporary-drawer__drawer true})
+      kids)))
+
+(defelem temporary-content [attr kids]
+  (let []
+    (div
+      (core/assoc-class attr
+        {:mdc-temporary-drawer__content true})
+      kids)))
+
+(defelem temporary-toolbar-spacer [attr kids]
+  (let []
+    (div
+      (core/assoc-class attr
+        {:mdc-temporary-drawer__toolbar-spacer true})
+      kids)))
+
+(defelem temporary-header [attr kids]
+  (let []
+    (header
+      (core/assoc-class attr
+        {:mdc-temporary-drawer__header true})
+      kids)))
+
+(defelem temporary-header-content [attr kids]
+  (let []
+    (header
+      (core/assoc-class attr
+        {:mdc-temporary-drawer__header-content true})
+      kids)))

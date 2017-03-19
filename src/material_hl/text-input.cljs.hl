@@ -1,4 +1,5 @@
 (ns material-hl.text-input
+  (:refer-hoplon :exclude [textarea])
   (:require [material-hl.core :as core]
             [goog.dom.classlist :as gcl]))
 
@@ -7,7 +8,7 @@
 
 (defelem textfield [attr kids]
   (let [float (or (:float-label attr) *floating-label*)
-        expandable (or (:float-label attr) *expandable*)]
+        expandable (or (:expandable attr) *expandable*)]
     (div (core/assoc-class attr {:mdl-textfield true
                                  :mdl-js-textfield true
                                  :mdl-textfield--floating-label float
