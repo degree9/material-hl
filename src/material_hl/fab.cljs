@@ -1,16 +1,16 @@
 (ns material-hl.fab
-  (:refer-hoplon :exclude [button])
-  (:require [material-hl.core :as core]))
+  (:require [hoplon.core :as hl]
+            [material-hl.core :as core]))
 
 (def ^:dynamic *mini*  false)
 (def ^:dynamic *plain* false)
 
-(defelem fab [attr kids]
+(hl/defelem fab [attr kids]
   (let [mini  (:mini  attr *mini*)
         plain (:plain attr *plain*)]
-    (hoplon.core/button
+    (hl/button
       (core/assoc-class attr
         {:mdc-fab        true
          :mdc-fab--mini  mini
          :mdc-fab--plain plain})
-      (span :class [:mdc-fab__icon] kids))))
+      (hl/span :class [:mdc-fab__icon] kids))))

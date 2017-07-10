@@ -1,5 +1,6 @@
 (ns material-hl.card
-  (:require [material-hl.core :as core]
+  (:require [hoplon.core :as hl]
+            [material-hl.core :as core]
             [material-hl.button :as btn]))
 
 (def ^:dynamic *dark*     nil)
@@ -7,30 +8,30 @@
 (def ^:dynamic *size*     nil)
 (def ^:dynamic *vertical* nil)
 
-(defelem card [attr kids]
+(hl/defelem card [attr kids]
   (let [dark (:dark attr *dark*)]
-    (div
+    (hl/div
       (core/assoc-class attr
         {:mdc-card             true
          :mdc-card--theme-dark dark})
       kids)))
 
-(defelem card-media [attr kids]
+(hl/defelem media [attr kids]
   (let []
-    (section
+    (hl/section
       (core/assoc-class attr
         {:mdc-card__media true})
       kids)))
 
-(defelem card-actions [attr kids]
+(hl/defelem actions [attr kids]
   (let [vertical (:vertical attr *vertical*)]
-    (section
+    (hl/section
       (core/assoc-class attr
         {:mdc-card__actions           true
          :mdc-card__actions--vertical vertical})
       kids)))
 
-(defelem card-action [attr kids]
+(hl/defelem action [attr kids]
   (let []
     (btn/button
       (core/assoc-class attr
@@ -38,48 +39,48 @@
         {:compact true})
       kids)))
 
-(defelem card-primary [attr kids]
+(hl/defelem primary [attr kids]
   (let []
-    (section
+    (hl/section
       (core/assoc-class attr
         {:mdc-card__primary true})
       kids)))
 
-(defelem card-title [attr kids]
+(hl/defelem title [attr kids]
   (let [large (:large attr *large*)]
-    (h1
+    (hl/h1
       (core/assoc-class attr
         {:mdc-card__title        true
          :mdc-card__title--large large})
       kids)))
 
-(defelem card-subtitle [attr kids]
+(hl/defelem subtitle [attr kids]
   (let []
-    (h2
+    (hl/h2
       (core/assoc-class attr
         {:mdc-card__subtitle true})
       kids)))
 
-(defelem card-supporting-text [attr kids]
+(hl/defelem supporting-text [attr kids]
   (let []
-    (section
+    (hl/section
       (core/assoc-class attr
         {:mdc-card__supporting-text true})
       kids)))
 
-(defelem card-horizontal-block [attr kids]
+(hl/defelem horizontal-block [attr kids]
   (let []
-    (div
+    (hl/div
       (core/assoc-class attr
         {:mdc-card__horizontal-block true})
       kids)))
 
-(defelem card-media-item [attr kids]
+(hl/defelem media-item [attr kids]
   (let [size (:size attr *size*)]
-    (img
+    (hl/img
       (core/assoc-class attr
         {:mdc-card__media-item true
-         (cond size
+         (case size
            :1.5 :mdc-card__media-item--1dot5x
            :2   :mdc-card__media-item--2x
            :3   :mdc-card__media-item--3x) true})

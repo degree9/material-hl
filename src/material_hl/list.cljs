@@ -1,5 +1,6 @@
 (ns material-hl.list
-  (:require [material-hl.core :as core]))
+  (:require [hoplon.core :as hl]
+            [material-hl.core :as core]))
 
 (def ^:dynamic *dense*    nil)
 (def ^:dynamic *two-line* nil)
@@ -8,11 +9,11 @@
 (def ^:dynamic *end*      nil)
 (def ^:dynamic *inset*    nil)
 
-(defelem list [attr kids]
+(hl/defelem list [attr kids]
   (let [dense    (:dense    attr *dense*)
         two-line (:two-line attr *two-line*)
         avatar   (:avatar   attr *avatar*)]
-    (ul
+    (hl/ul
       (core/assoc-class attr
         {:mdc-list              true
          :mdc-list--dense       dense
@@ -20,46 +21,46 @@
          :mdc-list--avatar-list avatar})
       kids)))
 
-(defelem list-item [attr kids]
+(hl/defelem list-item [attr kids]
   (let []
-    (li
+    (hl/li
       (core/assoc-class attr
         {:mdc-list-item true})
       kids)))
 
-(defelem list-item-text [attr kids]
+(hl/defelem list-item-text [attr kids]
   (let []
-    (span
+    (hl/span
       (core/assoc-class attr
         {:mdc-list-item__text true})
       kids)))
 
-(defelem list-item-text-primary [attr kids]
+(hl/defelem list-item-text-primary [attr kids]
   (let []
-    (span
+    (hl/span
       (core/assoc-class attr
         {:mdc-list-item__text__primary true})
       kids)))
 
-(defelem list-item-text-secondary [attr kids]
+(hl/defelem list-item-text-secondary [attr kids]
   (let []
-    (span
+    (hl/span
       (core/assoc-class attr
         {:mdc-list-item__text__secondary true})
       kids)))
 
-(defelem list-item-detail [attr kids]
+(hl/defelem list-item-detail [attr kids]
   (let [start (:start attr  *start*)
         end   (:end   attr  *end*)]
-    (span
+    (hl/span
       (core/assoc-class attr
         {:mdc-list-item__end-detail   end
          :mdc-list-item__start-detail (or start true)})
       kids)))
 
-(defelem list-divider [attr kids]
+(hl/defelem list-divider [attr kids]
   (let [inset (:inset attr *inset*)]
-    (li
+    (hl/li
       (-> attr
         (assoc :role "separator")
         (core/assoc-class
@@ -67,16 +68,16 @@
            :mdc-list-divider--inset inset}))
       kids)))
 
-(defelem list-group [attr kids]
+(hl/defelem list-group [attr kids]
   (let []
-    (div
+    (hl/div
       (core/assoc-class attr
         {:mdc-list-group true})
       kids)))
 
-(defelem list-group-subheader [attr kids]
+(hl/defelem list-group-subheader [attr kids]
   (let []
-    (h3
+    (hl/h3
       (core/assoc-class attr
         {:mdc-list-group__subheader true})
       kids)))

@@ -1,6 +1,6 @@
 (ns material-hl.button
-  (:refer-hoplon :exclude [button])
-  (:require [material-hl.core :as core]))
+  (:require [hoplon.core :as hl]
+            [material-hl.core :as core]))
 
 (def ^:dynamic *accent*  nil)
 (def ^:dynamic *compact* nil)
@@ -8,13 +8,13 @@
 (def ^:dynamic *primary* nil)
 (def ^:dynamic *raised*  nil)
 
-(defelem button [attr kids]
+(hl/defelem button [attr kids]
   (let [accent  (:accent  attr *accent*)
         compact (:compact attr *compact*)
         dense   (:dense   attr *dense*)
         primary (:primary attr *primary*)
         raised  (:raised  attr *raised*)]
-    (hoplon.core/button
+    (hl/button
       (core/assoc-class attr
         {:mdc-button          true
          :mdc-button--accent  accent
