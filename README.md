@@ -3,7 +3,7 @@ Material Components Web for Hoplon
 
 |              MDC-Web Component             |       Material-hl       |
 | :----------------------------------------: | :---------------------: |
-| [`@material/animation`](mdc-animation)     | N/A                     |
+| [`@material/animation`][mdc-animation]     | N/A                     |
 | [`@material/button`][mdc-button]           | material-hl.button      |
 | [`@material/card`][mdc-card]               | material-hl.card        |
 | [`@material/checkbox`][mdc-checkbox]       | material-hl.checkbox    |
